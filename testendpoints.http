@@ -20,7 +20,7 @@ content-type: application/json
 
 
 GET http://user-service/user
-?token=IntcInN1Y2Nlc3NcIjogdHJ1ZSwgXCJtZXNzYWdlXCI6IFwic3VjY2Vzc1wiLCBcInRva2VuXCI6IFwiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SjFjMlZ5Ym1GdFpTSTZJbU5oYkdWaUlpd2laVzFoYVd3aU9pSmpZV3hsWWtCbmJXRnBiQzVqYjIwaUxDSnBaQ0k2TVN3aWRHbHRaU0k2SWx3aU1qQXlNQzB4TVMweU5TQXdORG93TVRvek15NHdNRGN3TURWY0lpSjkuZFc0SndkNzNUVHJwWGRtTm5BN2trV3VxaHAwRUlUbTk0aFlzNTNCRkhZOFwifSI=
+?token=IntcInN1Y2Nlc3NcIjogZmFsc2UsIFwibWVzc2FnZVwiOiBcInVzZXIgZG9lcyBub3QgZXhpc3RcIiwgXCJ0b2tlblwiOiBcIlwifSI=
 
 ###
 
@@ -32,6 +32,6 @@ POST http://localhost:3000/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "caleb",
+    "username": "caleb2",
     "password": "password"
- }
+}

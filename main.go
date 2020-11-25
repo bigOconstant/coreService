@@ -3,9 +3,11 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -22,32 +24,59 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//Logintoken token
+type LoginToken struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+	Token   string `json:"token"`
+}
+
+//Login struct
+type Login struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 func login(w http.ResponseWriter, r *http.Request) {
-	requestBody, err := json.Marshal(map[string]string{
-		"username": "caleb",
-		"password": "password",
-	})
+
+	var output Login
+	err := json.NewDecoder(r.Body).Decode(&output)
 
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	fmt.Println(output)
+
+	requestBody, err := json.Marshal(map[string]string{
+		"username": output.Username,
+		"password": output.Password,
+	})
 
 	resp, err := http.Post("http://user-service/login/", "application/json", bytes.NewBuffer(requestBody))
 
 	if err != nil {
 		log.Fatalln(err)
 	}
-
-	defer resp.Body.Close()
-
 	body, err := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
+	var token LoginToken = LoginToken{}
+
+	jsonInput, err := strconv.Unquote(string(body))
+	if err != nil {
+		log.Println(err)
+		json.NewEncoder(w).Encode(&token)
+	}
+
+	err = json.Unmarshal([]byte(jsonInput), &token)
 
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		json.NewEncoder(w).Encode(&token)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(&body)
+	json.NewEncoder(w).Encode(&token)
 }
 
 func main() {
