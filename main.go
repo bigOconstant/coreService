@@ -12,6 +12,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const (
+	USERSERVICEURL = "jetsonnano"
+)
+
 type user struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
@@ -53,7 +57,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		"password": output.Password,
 	})
 
-	resp, err := http.Post("http://user-service/login/", "application/json", bytes.NewBuffer(requestBody))
+	resp, err := http.Post(USERSERVICEURL+"/login/", "application/json", bytes.NewBuffer(requestBody))
 
 	if err != nil {
 		log.Fatalln(err)

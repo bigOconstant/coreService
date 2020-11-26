@@ -1,26 +1,26 @@
-POST http://user-service:80/register HTTP/1.1
+POST http://jetsonnano.local/register HTTP/1.1
 content-type: application/json
 
 {
-    "username": "caleb2",
+    "username": "fox",
     "password": "password",
     "email": "caleb@gmail.com"
  }
 
 ###
-POST http://user-service:80/login/ HTTP/1.1
+POST http://jetsonnano.local/login/ HTTP/1.1
 content-type: application/json
 
 {
-    "username": "caleb2",
+    "username": "fox",
     "password": "password"
  }
 
 ###
 
 
-GET http://user-service/user
-?token=IntcInN1Y2Nlc3NcIjogZmFsc2UsIFwibWVzc2FnZVwiOiBcInVzZXIgZG9lcyBub3QgZXhpc3RcIiwgXCJ0b2tlblwiOiBcIlwifSI=
+GET http://jetsonnano.local/user
+?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImZveCIsImVtYWlsIjoiY2FsZWJAZ21haWwuY29tIiwiaWQiOjQsInRpbWUiOiJcIjIwMjAtMTEtMjYgMTk6MDA6MDkuMjgxNDYxXCIifQ.1tsYh8d9gqYQqBgzf_U1WqGvCwlcrUpOmmRkCEW4_4U
 
 ###
 
