@@ -1,4 +1,4 @@
-POST http://jetsonnano.local/register HTTP/1.1
+POST http://user-service:5000/register HTTP/1.1
 content-type: application/json
 
 {
@@ -8,7 +8,7 @@ content-type: application/json
  }
 
 ###
-POST http://jetsonnano.local/login/ HTTP/1.1
+POST http://user-service:5000/login/ HTTP/1.1
 content-type: application/json
 
 {
@@ -28,7 +28,7 @@ GET http://localhost:3000/
 
 ###
 
-POST http://localhost:3000/login HTTP/1.1
+POST http://localhost:3001/login HTTP/1.1
 content-type: application/json
 
 {

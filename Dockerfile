@@ -30,13 +30,16 @@ RUN sudo yum install wget -y
 RUN sudo yum install make -y
 RUN sudo yum install gcc -y
 
+
 # Install golang
 WORKDIR /installs
 
 RUN sudo chown -R $USERNAME /installs 
 
-RUN wget https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
-RUN sudo tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
+RUN echo "running install script"
+COPY scripts/installgo.sh .
+RUN ./installgo.sh
+
 WORKDIR /go
 RUN sudo chown -R $USERNAME /go
 
@@ -59,6 +62,7 @@ RUN go get -v github.com/go-delve/delve/cmd/dlv
 RUN go get -v github.com/sqs/goreturns
 RUN go get -v github.com/rogpeppe/godef
 RUN go get -v github.com/mdempsky/gocode
+RUN go get -v golang.org/x/tools/gopls
 
 RUN go get -v github.com/gorilla/mux
 RUN sudo yum install iputils -y
